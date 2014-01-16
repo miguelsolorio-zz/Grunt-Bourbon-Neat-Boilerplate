@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, target-densityDpi=device-dpi">
+  <meta name="description" content="{{description}}">
+  <script src="js/modernizr.js"></script>
+  {{#if production}}
+  <link rel="stylesheet" href="css/main.min.css">
+  {{else}}
+  <link rel="stylesheet" href="css/main.css">
+  {{/if}}
+  <title>{{title}}</title>
+</head>
+<body>
+
+{{> body  }}
+
+{{#if production}}
+<script src="js/main.min.js"></script>
+{{else}}
+<script src="js/main.js"></script>
+{{/if}}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "grunt-bourbon-neat-boilerplate",
+  "version": "1",
+  "authors": [
+    "Miguel Solorio <miguel.solorio@zumobi.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "bourbon": "~3.1.8",
+    "neat": "~1.5.0",
+    "jquery": "~2.0.3",
+    "_normalize.scss": "https://github.com/jjt/_normalize.scss.git#~2.1.3"
+  }
+}

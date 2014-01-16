@@ -1,0 +1,56 @@
+@import "util";
+
+//=======================
+//  App
+//=======================
+
+.container{
+  @include outer-container;
+  padding: 0 20px;
+  .section{
+    @include fill-parent;
+    margin-top: 50px;
+  }
+}
+
+body{
+  color: #666;
+}
+
+a{
+  color: #dc322f;
+}
+
+h1{
+  margin:0;
+  color: #000;
+}
+
+h2{
+  margin: 25px 0 5px 0;
+  color: #333;
+  font-weight: normal;
+}
+
+p{
+  margin: 7px 0;
+}
+
+.label{
+  padding: 4px 10px;
+  color: white;
+  background-color: #666;
+  border: 2px solid white;
+}
+
+a.button{
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  background-color: #dc322f;
+  @include transition (background-color .3s ease-in-out);
+  &:hover{
+    background-color: rgba(#dc322f, .8);
+  }
+}
