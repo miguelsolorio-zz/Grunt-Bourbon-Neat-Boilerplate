@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
 
   var globalConfig = {
-    dist: '_public',
+    destination: '_public',
     source: 'src'
   };
 
@@ -12,13 +12,21 @@ module.exports = function(grunt) {
     globalConfig: globalConfig,
     pkg: grunt.file.readJSON('package.json'),
 
+    mkdir: {
+      all: {
+        options: {
+          create: ['<%= globalConfig.destination  %>', '<%= globalConfig.destination  %>/css', '<%= globalConfig.destination  %>/js']
+        },
+      },
+    },
+
     imagemin: {
       dynamic: {
         files: [{
           expand: true,
           cwd: '<%= globalConfig.source  %>/images/',
           src: ['**/*.{png,jpg,gif}'],
-          dest: '<%= globalConfig.dist  %>/images/'
+          dest: '<%= globalConfig.destination  %>/images/'
         }]
       }
     },
@@ -29,7 +37,7 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-          '<%= globalConfig.dist  %>/css/main.min.css': '<%= globalConfig.source  %>/css/main.scss'
+          '<%= globalConfig.destination  %>/css/main.min.css': '<%= globalConfig.source  %>/css/main.scss'
         }
       },
 
@@ -39,7 +47,7 @@ module.exports = function(grunt) {
           lineNumbers: 'true',
         },
         files: {
-          '<%= globalConfig.dist  %>/css/main.css': '<%= globalConfig.source  %>/css/main.scss'
+          '<%= globalConfig.destination  %>/css/main.css': '<%= globalConfig.source  %>/css/main.scss'
         }
       }
     },
@@ -50,7 +58,7 @@ module.exports = function(grunt) {
           name: "app",
           baseUrl: "src/js",
           mainConfigFile: "src/js/config.js",
-          out: "<%= globalConfig.dist  %>/js/main.js",
+          out: "<%= globalConfig.destination  %>/js/main.js",
           include: ['../../node_modules/grunt-contrib-requirejs/node_modules/requirejs/require.js']
         }
       }
@@ -59,10 +67,10 @@ module.exports = function(grunt) {
     modernizr: {
 
         // [REQUIRED] Path to the build you're using for development.
-        "devFile" : "src/js/app.js",
+        "devFile" : "<%= globalConfig.source  %>/js/app.js",
 
         // [REQUIRED] Path to save out the built file.
-        "outputFile" : "<%= globalConfig.dist  %>/js/modernizr.js",
+        "outputFile" : "<%= globalConfig.destination  %>/js/modernizr.js",
 
         // Based on default settings on http://modernizr.com/download/
         "extra" : {
@@ -86,19 +94,19 @@ module.exports = function(grunt) {
         },
 
         // By default, source is uglified before saving
-        "uglify" : false,
+        "uglify" : false
     },
 
     uglify: {
       my_target: {
         files: {
-          '<%= globalConfig.dist  %>/js/main.min.js': ['<%= globalConfig.dist  %>/js/main.js']
+          '<%= globalConfig.destination  %>/js/main.min.js': ['<%= globalConfig.destination  %>/js/main.js']
         }
       }
     },
 
     clean: {
-     all: ['<%= globalConfig.dist  %>/**/*']
+     all: ['<%= globalConfig.destination  %>/**/*']
     },
 
 
@@ -145,7 +153,7 @@ module.exports = function(grunt) {
         options: {
           open: true,
           base: [
-            '<%= globalConfig.dist  %>'
+            '<%= globalConfig.destination  %>'
           ]
         }
       }
@@ -178,6 +186,7 @@ module.exports = function(grunt) {
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-mkdir');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks("grunt-modernizr");
@@ -190,9 +199,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-newer' );
 
   // Default
-  grunt.registerTask('default', ['clean', 'newer:sass:dev', 'modernizr', 'requirejs', 'newer:imagemin', 'assemble:site', 'connect', 'watch']);
+  grunt.registerTask('default', ['clean', 'mkdir', 'newer:sass:dev', 'modernizr', 'requirejs', 'newer:imagemin', 'assemble:site', 'connect', 'watch']);
 
   // Build Task
-  grunt.registerTask('build', ['clean', 'newer:sass:dist', 'modernizr', 'requirejs', 'newer:uglify', 'newer:imagemin', 'assemble:production', 'newer:assemble']);
+  grunt.registerTask('build', ['clean', 'mkdir', 'newer:sass:dist', 'modernizr', 'requirejs', 'newer:uglify', 'newer:imagemin', 'assemble:production', 'newer:assemble']);
 
 };
