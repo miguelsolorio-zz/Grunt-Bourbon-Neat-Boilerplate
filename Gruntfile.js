@@ -20,6 +20,17 @@ module.exports = function(grunt) {
       },
     },
 
+    copy: {
+      images: {
+        expand: true,
+        cwd: '<%= globalConfig.source  %>/images/',
+        src: '**',
+        dest: '<%= globalConfig.destination  %>/images/',
+        flatten: true,
+        filter: 'isFile',
+      }
+    },
+
     imagemin: {
       dynamic: {
         files: [{
@@ -188,6 +199,7 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-mkdir');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks("grunt-modernizr");
@@ -200,9 +212,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-newer' );
 
   // Default
-  grunt.registerTask('default', ['clean', 'mkdir', 'newer:sass:dev', 'modernizr', 'requirejs', 'newer:imagemin', 'assemble:site', 'connect', 'watch']);
+  grunt.registerTask('default', ['clean', 'mkdir', 'newer:sass:dev', 'modernizr', 'requirejs', 'copy:images', 'assemble:site', 'connect', 'watch']);
 
   // Build Task
-  grunt.registerTask('build', ['clean', 'mkdir', 'newer:sass:dist', 'modernizr', 'requirejs', 'newer:uglify', 'newer:imagemin', 'assemble:production', 'newer:assemble']);
+  grunt.registerTask('build', ['clean', 'mkdir', 'sass:dist', 'modernizr', 'requirejs', 'uglify', 'imagemin', 'assemble:production']);
 
 };
