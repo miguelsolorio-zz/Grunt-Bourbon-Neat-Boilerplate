@@ -26,14 +26,13 @@ Welcome to my responsive boilerplate! I've created this template for myself to h
 ## File Structure
 
 ### HTML
-All pages can be found under <code>src > template > pages</code> which use the default layout template found under <code>src > template > layouts > default.hbs</code>
-You can also find all partials under <code>src > template > partials > *.hbs</code>
+All pages can be found under <code>src > template > pages</code> which use the default layout template found under <code>src > template > layouts > default.hbs</code>. You can also find all partials under <code>src > template > partials > *.hbs</code>.
 
 ### SASS
-All CSS dependencies are imported at <code>src > css > main.scss</code>
+All CSS dependencies are imported at <code>src > css > main.scss</code>.
 
 ### JavaScript
-RequireJS handles all dependencies and are defined at <code>src > js > config.js</code> and included at <code>src > js > app.js</code>
+RequireJS handles all dependencies and are defined at <code>src > js > config.js</code> and included at <code>src > js > app.js</code>.
 
 ## Build for Production
 
