@@ -6,9 +6,12 @@
 
 .container{
   @include outer-container;
-  padding: 0 20px;
+  padding: 20px;
   .section{
     @include fill-parent;
+    &:first-child{
+      margin-top: 0;
+    }
     margin-top: 50px;
   }
 }
