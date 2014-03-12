@@ -164,7 +164,8 @@ module.exports = function(grunt) {
       options: {
         prettify: {indent: 2},
         marked: {sanitize: false},
-        data:   "src/template/data/site.yml",
+        partials: '<%= globalConfig.source  %>/template/partials/**/*.hbs',
+        data:   "<%= globalConfig.source  %>/template/data/site.yml",
         layoutdir: '<%= globalConfig.source  %>/template/layouts',
       },
       site: {
