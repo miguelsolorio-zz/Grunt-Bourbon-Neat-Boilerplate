@@ -27,6 +27,7 @@ Welcome to my responsive boilerplate! I've created this template for myself to h
 
 ### HTML
 All pages can be found under <code>src > template > pages</code> which use the default layout template found under <code>src > template > layouts > default.hbs</code>
+You can also find all partials under <code>src > template > partials > *.hbs</code>
 
 ### SASS
 All CSS dependencies are imported at <code>src > css > main.scss</code>
